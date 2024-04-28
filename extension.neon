@@ -1,0 +1,3 @@
+services:
+    - class: Recoded\PHPStanLaravel\Extensions\StubExtension
+      tags: [phpstan.stubFilesExtension]

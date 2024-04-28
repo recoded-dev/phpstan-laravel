@@ -15,9 +15,33 @@
         "phpstan/phpstan": "^1.10",
         "phpstan/extension-installer": "^1.3"
     },
+    "require-dev": {
+        "laravel/framework": "^11.0",
+        "phpunit/phpunit": "^11.1",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "phpstan/phpstan-strict-rules": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Recoded\\PHPStanLaravel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "config": {
         "allow-plugins": {
             "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
         }
     }
 }

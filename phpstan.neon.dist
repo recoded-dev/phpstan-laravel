@@ -1,0 +1,7 @@
+parameters:
+    excludePaths:
+        - tests/Types/data
+    level: max
+    paths:
+        - src/
+        - tests/

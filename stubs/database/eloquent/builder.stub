@@ -1,0 +1,12 @@
+<?php
+
+namespace Illuminate\Database\Eloquent;
+
+class Builder
+{
+    /**
+     * @param string[]|string $columns
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function first($columns = ['*']);
+}
