@@ -2,11 +2,14 @@
 
 namespace Illuminate\Database\Eloquent;
 
+/**
+ * @template TModel of \Illuminate\Database\Eloquent\Model
+ */
 class Builder
 {
     /**
      * @param string[]|string $columns
-     * @return \Illuminate\Database\Eloquent\Model|null
+     * @return TModel|null
      */
     public function first($columns = ['*']);
 }

@@ -17,6 +17,7 @@ final class StubExtension implements StubFilesExtension
     {
         return [
             __DIR__ . '/../../stubs/database/eloquent/builder.stub',
+            __DIR__ . '/../../stubs/database/eloquent/model.stub',
         ];
     }
 }

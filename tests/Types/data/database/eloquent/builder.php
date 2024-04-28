@@ -2,6 +2,6 @@
 
 use function PHPStan\Testing\assertType;
 
-/** @var \Illuminate\Database\Eloquent\Builder $builder */
+/** @var \Illuminate\Database\Eloquent\Builder<\Tests\Types\Fakes\User> $builder */
 
-assertType('Illuminate\Database\Eloquent\Model|null', $builder->first());
+assertType('Tests\Types\Fakes\User|null', $builder->first());
