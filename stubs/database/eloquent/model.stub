@@ -13,5 +13,10 @@ class Model
     /**
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
+    public function newModelQuery();
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder<static>
+     */
     public static function query();
 }
