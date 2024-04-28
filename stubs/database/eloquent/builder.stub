@@ -12,4 +12,10 @@ class Builder
      * @return TModel|null
      */
     public function first($columns = ['*']);
+
+    /**
+     * @param string[]|string $columns
+     * @return \Illuminate\Database\Eloquent\Collection<int, TModel>
+     */
+    public function get($columns = ['*']);
 }
