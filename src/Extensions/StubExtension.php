@@ -20,6 +20,7 @@ final class StubExtension implements StubFilesExtension
             __DIR__ . '/../../stubs/database/eloquent/relations/belongs-to.stub',
             __DIR__ . '/../../stubs/database/eloquent/relations/belongs-to-many.stub',
             __DIR__ . '/../../stubs/database/eloquent/relations/has-many.stub',
+            __DIR__ . '/../../stubs/database/eloquent/relations/has-one.stub',
             __DIR__ . '/../../stubs/database/eloquent/relations/has-one-or-many.stub',
             __DIR__ . '/../../stubs/database/eloquent/relations/relation.stub',
             __DIR__ . '/../../stubs/database/eloquent/builder.stub',
