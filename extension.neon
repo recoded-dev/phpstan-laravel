@@ -1,3 +1,5 @@
 services:
     - class: Recoded\PHPStanLaravel\Extensions\StubExtension
       tags: [phpstan.stubFilesExtension]
+    - class: Recoded\PHPStanLaravel\Extensions\Eloquent\Scopes
+      tags: [phpstan.broker.methodsClassReflectionExtension]

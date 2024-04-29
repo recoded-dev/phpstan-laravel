@@ -16,6 +16,12 @@ final class StubExtension implements StubFilesExtension
     public function getFiles(): array
     {
         return [
+            __DIR__ . '/../../stubs/contracts/database/eloquent/builder.stub',
+            __DIR__ . '/../../stubs/database/eloquent/relations/belongs-to.stub',
+            __DIR__ . '/../../stubs/database/eloquent/relations/belongs-to-many.stub',
+            __DIR__ . '/../../stubs/database/eloquent/relations/has-many.stub',
+            __DIR__ . '/../../stubs/database/eloquent/relations/has-one-or-many.stub',
+            __DIR__ . '/../../stubs/database/eloquent/relations/relation.stub',
             __DIR__ . '/../../stubs/database/eloquent/builder.stub',
             __DIR__ . '/../../stubs/database/eloquent/model.stub',
         ];

@@ -1,0 +1,11 @@
+<?php
+
+namespace Illuminate\Contracts\Database\Eloquent;
+
+/**
+ * @template TModel of \Illuminate\Database\Eloquent\Model
+ * @mixin \Illuminate\Database\Eloquent\Builder<TModel>
+ */
+interface Builder
+{
+}

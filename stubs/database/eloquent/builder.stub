@@ -2,10 +2,13 @@
 
 namespace Illuminate\Database\Eloquent;
 
+use Illuminate\Contracts\Database\Eloquent\Builder as BuilderContract;
+
 /**
  * @template TModel of \Illuminate\Database\Eloquent\Model
+ * @implements \Illuminate\Contracts\Database\Eloquent\Builder<TModel>
  */
-class Builder
+class Builder implements BuilderContract
 {
     /**
      * @param string[]|string $columns

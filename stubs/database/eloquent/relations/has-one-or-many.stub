@@ -1,0 +1,123 @@
+<?php
+
+namespace Illuminate\Database\Eloquent\Relations;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @template TParent of \Illuminate\Database\Eloquent\Model
+ * @template TRelated of \Illuminate\Database\Eloquent\Model
+ * @extends \Illuminate\Database\Eloquent\Relations\Relation<TParent, TRelated>
+ */
+abstract class HasOneOrMany extends Relation
+{
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TRelated
+     */
+    public function make(array $attributes = []);
+
+    /**
+     * @param iterable<array-key, array<string, mixed>> $records
+     * @return \Illuminate\Database\Eloquent\Collection<int, TRelated>
+     */
+    public function makeMany($records);
+
+    /**
+     * @param mixed $id
+     * @param string[] $columns
+     * @return TRelated
+     */
+    public function findOrNew($id, $columns = ['*']);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @param array<string, mixed> $values
+     * @return TRelated
+     */
+    public function firstOrNew(array $attributes = [], array $values = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @param array<string, mixed> $values
+     * @return TRelated
+     */
+    public function firstOrCreate(array $attributes = [], array $values = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @param array<string, mixed> $values
+     * @return TRelated
+     */
+    public function createOrFirst(array $attributes = [], array $values = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @param array<string, mixed> $values
+     * @return TRelated
+     */
+    public function updateOrCreate(array $attributes, array $values = []);
+
+    /**
+     * @param TRelated $model
+     * @return TRelated|false
+     */
+    public function save(Model $model);
+
+    /**
+     * @param TRelated $model
+     * @return TRelated|false
+     */
+    public function saveQuietly(Model $model);
+
+    /**
+     * @template TModels of iterable<array-key, TRelated>
+     * @param TModels $models
+     * @return TModels
+     */
+    public function saveMany($models);
+
+    /**
+     * @template TModels of iterable<array-key, TRelated>
+     * @param TModels $models
+     * @return TModels
+     */
+    public function saveManyQuietly($models);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TRelated
+     */
+    public function create(array $attributes = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TRelated
+     */
+    public function createQuietly(array $attributes = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TRelated
+     */
+    public function forceCreate(array $attributes = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TRelated
+     */
+    public function forceCreateQuietly(array $attributes = []);
+
+
+    /**
+     * @param iterable<array-key, array<string, mixed>> $records
+     * @return \Illuminate\Database\Eloquent\Collection<int, TRelated>
+     */
+    public function createMany(iterable $records);
+
+    /**
+     * @param iterable<array-key, array<string, mixed>> $records
+     * @return \Illuminate\Database\Eloquent\Collection<int, TRelated>
+     */
+    public function createManyQuietly(iterable $records);
+}
