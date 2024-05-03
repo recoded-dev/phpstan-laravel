@@ -57,7 +57,7 @@ class Builder implements BuilderContract
     /**
      * @param mixed $id
      * @param string[]|string $columns
-     * @return TModel
+     * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TCollection : TModel)
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
      */
     public function findOrFail($id, $columns = ['*']);
@@ -65,7 +65,7 @@ class Builder implements BuilderContract
     /**
      * @param mixed $id
      * @param string[]|string $columns
-     * @return TModel
+     * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TCollection : TModel)
      */
     public function findOrNew($id, $columns = ['*']);
 

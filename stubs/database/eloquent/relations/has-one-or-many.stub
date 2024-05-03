@@ -27,7 +27,7 @@ abstract class HasOneOrMany extends Relation
     /**
      * @param mixed $id
      * @param string[] $columns
-     * @return TRelated
+     * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TRelatedCollection : TRelated)
      */
     public function findOrNew($id, $columns = ['*']);
 

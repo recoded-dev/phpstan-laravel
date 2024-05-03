@@ -8,6 +8,7 @@ use function PHPStan\Testing\assertType;
 assertType('Tests\Types\Fakes\Post', $relation->make(['foo' => 'bar']));
 assertType('Illuminate\Database\Eloquent\Collection<int, Tests\Types\Fakes\Post>', $relation->makeMany([['foo' => 'bar']]));
 assertType('Tests\Types\Fakes\Post', $relation->findOrNew(1));
+assertType('Illuminate\Database\Eloquent\Collection<int, Tests\Types\Fakes\Post>', $relation->findOrNew([1]));
 assertType('Tests\Types\Fakes\Post', $relation->firstOrNew(['foo' => 'bar']));
 assertType('Tests\Types\Fakes\Post', $relation->firstOrCreate(['foo' => 'bar']));
 assertType('Tests\Types\Fakes\Post', $relation->createOrFirst(['foo' => 'bar']));

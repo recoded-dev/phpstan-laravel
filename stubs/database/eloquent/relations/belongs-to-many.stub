@@ -15,7 +15,7 @@ class BelongsToMany extends Relation
     /**
      * @param mixed $id
      * @param string[] $columns
-     * @return TRelated
+     * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TRelatedCollection : TRelated)
      */
     public function findOrNew($id, $columns = ['*']);
 
@@ -56,7 +56,7 @@ class BelongsToMany extends Relation
     /**
      * @param mixed $id
      * @param string[] $columns
-     * @return TRelated|null
+     * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TRelatedCollection : TRelated|null)
      */
     public function find($id, $columns = ['*']);
 
@@ -70,17 +70,17 @@ class BelongsToMany extends Relation
     /**
      * @param mixed $id
      * @param string[] $columns
-     * @return TRelated
+     * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TRelatedCollection : TRelated)
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TRelated>
      */
     public function findOrFail($id, $columns = ['*']);
 
     /**
-     * @template TOther
+     * @template TReturn
      * @param mixed $id
-     * @param \Closure(): TOther|array $columns
-     * @param \Closure(): TOther|null  $callback
-     * @return TRelated|TOther
+     * @param (\Closure(): TReturn)|array $columns
+     * @param (\Closure(): TReturn)|null $callback
+     * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TRelatedCollection : TRelated|TReturn)
      */
     public function findOr($id, $columns = ['*'], ?Closure $callback = null);
 
