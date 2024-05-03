@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @template TParent of \Illuminate\Database\Eloquent\Model
  * @template TRelated of \Illuminate\Database\Eloquent\Model
  * @extends \Illuminate\Database\Eloquent\Relations\Relation<TParent, TRelated>
+ * @phpstan-type TRelatedCollection \Illuminate\Database\Eloquent\Collection<int, TRelated>
  */
 class BelongsToMany extends Relation
 {
@@ -62,7 +63,7 @@ class BelongsToMany extends Relation
     /**
      * @param \Illuminate\Contracts\Support\Arrayable|mixed[] $ids
      * @param string[] $columns
-     * @return \Illuminate\Database\Eloquent\Collection<int, TRelated>
+     * @return TRelatedCollection
      */
     public function findMany($ids, $columns = ['*']);
 
@@ -115,7 +116,7 @@ class BelongsToMany extends Relation
 
     /**
      * @param string[] $columns
-     * @return \Illuminate\Database\Eloquent\Collection<int, TRelated>
+     * @return TRelatedCollection
      */
     public function get($columns = ['*']);
 

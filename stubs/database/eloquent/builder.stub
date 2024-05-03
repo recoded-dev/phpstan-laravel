@@ -2,14 +2,289 @@
 
 namespace Illuminate\Database\Eloquent;
 
+use Closure;
 use Illuminate\Contracts\Database\Eloquent\Builder as BuilderContract;
 
 /**
  * @template TModel of \Illuminate\Database\Eloquent\Model
  * @implements \Illuminate\Contracts\Database\Eloquent\Builder<TModel>
+ * @phpstan-type TCollection \Illuminate\Database\Eloquent\Collection<int, TModel>
  */
 class Builder implements BuilderContract
 {
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TModel
+     */
+    public function make(array $attributes = []);
+
+    /**
+     * @param \Closure|string|array|\Illuminate\Contracts\Database\Query\Expression $column
+     * @param mixed $operator
+     * @param mixed $value
+     * @param string $boolean
+     * @return TModel|null
+     */
+    public function firstWhere($column, $operator = null, $value = null, $boolean = 'and');
+
+    /**
+     * @param array<int, array<string, mixed>> $items
+     * @return TCollection
+     */
+    public function hydrate(array $items);
+
+    /**
+     * @param string $query
+     * @param array<int, mixed> $bindings
+     * @return TCollection
+     */
+    public function fromQuery($query, $bindings = []);
+
+    /**
+     * @param mixed $id
+     * @param string[]|string $columns
+     * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TCollection : TModel|null)
+     */
+    public function find($id, $columns = ['*']);
+
+    /**
+     * @param \Illuminate\Contracts\Support\Arrayable|mixed[] $ids
+     * @param string[]|string $columns
+     * @return TCollection
+     */
+    public function findMany($ids, $columns = ['*']);
+
+    /**
+     * @param mixed $id
+     * @param string[]|string $columns
+     * @return TModel
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
+     */
+    public function findOrFail($id, $columns = ['*']);
+
+    /**
+     * @param mixed $id
+     * @param string[]|string $columns
+     * @return TModel
+     */
+    public function findOrNew($id, $columns = ['*']);
+
+    /**
+     * @template TReturn
+     * @param mixed $id
+     * @param (\Closure(): TReturn)|string[]|string $columns
+     * @param (\Closure(): TReturn)|null $callback
+     * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TCollection : TModel|TReturn)
+     */
+    public function findOr($id, $columns = ['*'], ?Closure $callback = null);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @param array<string, mixed> $values
+     * @return TModel
+     */
+    public function firstOrNew(array $attributes = [], array $values = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @param array<string, mixed> $values
+     * @return TModel
+     */
+    public function firstOrCreate(array $attributes = [], array $values = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @param array<string, mixed> $values
+     * @return TModel
+     */
+    public function createOrFirst(array $attributes = [], array $values = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @param array<string, mixed> $values
+     * @return TModel
+     */
+    public function updateOrCreate(array $attributes, array $values = []);
+
+    /**
+     * @param string[]|string $columns
+     * @return TModel
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
+     */
+    public function firstOrFail($columns = ['*']);
+
+    /**
+     * @template TOther
+     * @param (\Closure(): TOther)|string[]|string $columns
+     * @param (\Closure(): TOther)|null $callback
+     * @return TModel|TOther
+     */
+    public function firstOr($columns = ['*'], ?Closure $callback = null);
+
+    /**
+     * @param string[]|string $columns
+     * @return TModel
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
+     * @throws \Illuminate\Database\MultipleRecordsFoundException
+     */
+    public function sole($columns = ['*']);
+
+    /**
+     * @param string|\Illuminate\Contracts\Database\Query\Expression $column
+     * @return mixed
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
+     * @throws \Illuminate\Database\MultipleRecordsFoundException
+     */
+    public function soleValue($column);
+
+    /**
+     * @param string|\Illuminate\Contracts\Database\Query\Expression $column
+     * @return mixed
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
+     */
+    public function valueOrFail($column);
+
+    /**
+     * @param string[]|string $columns
+     * @return TCollection
+     */
+    public function get($columns = ['*']);
+
+    /**
+     * @param string[]|string $columns
+     * @return TModel[]
+     */
+    public function getModels($columns = ['*']);
+
+    /**
+     * @return \Illuminate\Support\LazyCollection<int, TModel>
+     */
+    public function cursor();
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TModel
+     */
+    public function create(array $attributes = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TModel
+     */
+    public function forceCreate(array $attributes);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TModel
+     */
+    public function forceCreateQuietly(array $attributes = []);
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @return TModel
+     */
+    public function newModelInstance($attributes = []);
+
+    /**
+     * @return TModel
+     */
+    public function getModel();
+
+    /**
+     * @param TModel $model
+     * @return $this
+     */
+    public function setModel(Model $model);
+
+    // Illuminate\Database\Concerns\BuildsQueries
+
+    /**
+     * @param int $count
+     * @param callable(TCollection, int): (void|false) $callback
+     * @return bool
+     */
+    public function chunk($count, callable $callback);
+
+    /**
+     * @template TReturn
+     * @param callable(TModel): TReturn $callback
+     * @param int $count
+     * @return \Illuminate\Support\Collection<int, TReturn>
+     */
+    public function chunkMap(callable $callback, $count = 1000);
+
+    /**
+     * @param callable(TModel, int): (void|false) $callback
+     * @param int $count
+     * @return bool
+     *
+     * @throws \RuntimeException
+     */
+    public function each(callable $callback, $count = 1000);
+
+    /**
+     * @param int $count
+     * @param callable(TCollection, int): (void|false) $callback
+     * @param string|null $column
+     * @param string|null $alias
+     * @return bool
+     */
+    public function chunkById($count, callable $callback, $column = null, $alias = null);
+
+    /**
+     * @param int $count
+     * @param callable(TCollection, int): (void|false) $callback
+     * @param string|null $column
+     * @param string|null $alias
+     * @return bool
+     */
+    public function chunkByIdDesc($count, callable $callback, $column = null, $alias = null);
+
+    /**
+     * @param int $count
+     * @param callable(TCollection, int): (void|false) $callback
+     * @param string|null $column
+     * @param string|null $alias
+     * @param bool $descending
+     * @return bool
+     * @throws \RuntimeException
+     */
+    public function orderedChunkById($count, callable $callback, $column = null, $alias = null, $descending = false);
+
+    /**
+     * @param callable(TModel, int): (void|false) $callback
+     * @param int $count
+     * @param string|null $column
+     * @param string|null $alias
+     * @return bool
+     */
+    public function eachById(callable $callback, $count = 1000, $column = null, $alias = null);
+
+    /**
+     * @param int $chunkSize
+     * @return \Illuminate\Support\LazyCollection<int, TModel>
+     * @throws \InvalidArgumentException
+     */
+    public function lazy($chunkSize = 1000);
+
+    /**
+     * @param int $chunkSize
+     * @param string|null $column
+     * @param string|null $alias
+     * @return \Illuminate\Support\LazyCollection<int, TModel>
+     * @throws \InvalidArgumentException
+     */
+    public function lazyById($chunkSize = 1000, $column = null, $alias = null);
+
+    /**
+     * @param int $chunkSize
+     * @param string|null $column
+     * @param string|null $alias
+     * @return \Illuminate\Support\LazyCollection<int, TModel>
+     * @throws \InvalidArgumentException
+     */
+    public function lazyByIdDesc($chunkSize = 1000, $column = null, $alias = null);
+
     /**
      * @param string[]|string $columns
      * @return TModel|null
@@ -18,7 +293,9 @@ class Builder implements BuilderContract
 
     /**
      * @param string[]|string $columns
-     * @return \Illuminate\Database\Eloquent\Collection<int, TModel>
+     * @return TModel
+     * @throws \Illuminate\Database\RecordsNotFoundException
+     * @throws \Illuminate\Database\MultipleRecordsFoundException
      */
-    public function get($columns = ['*']);
+    public function sole($columns = ['*']);
 }
