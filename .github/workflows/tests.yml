@@ -1,0 +1,16 @@
+name: Tests
+
+on:
+  pull_request: ~
+  push:
+    branches: [main]
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: php-actions/composer@v6
+      - uses: php-actions/phpunit@v4
+        with:
+          memory_limit: "512M"
