@@ -50,7 +50,7 @@ final class WhereHasMorphBuilderType implements MethodParameterClosureTypeExtens
         }
 
         return $parameter->getName() === 'callback'
-            && $method->getDeclaringClass()->getName() === 'Illuminate\Database\Eloquent\Builder';
+            && $method->getDeclaringClass()->is('Illuminate\Database\Eloquent\Builder');
     }
 
     public function getTypeFromMethodCall(MethodReflection $method, MethodCall $methodCall, ParameterReflection $parameter, Scope $scope): ?Type

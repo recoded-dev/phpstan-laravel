@@ -67,6 +67,8 @@ assertType('Illuminate\Support\LazyCollection<int, Tests\Types\Fakes\User>', $bu
 assertType('Tests\Types\Fakes\User|null', $builder->first());
 assertType('Tests\Types\Fakes\User', $builder->sole());
 
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->take(5));
+
 // Scopes
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->blocked(false));
 

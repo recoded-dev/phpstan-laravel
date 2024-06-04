@@ -18,3 +18,7 @@ services:
       arguments:
         morphMap: %laravel.morphMap%
       tags: [phpstan.methodParameterClosureTypeExtension]
+    - class: Recoded\PHPStanLaravel\Extensions\Eloquent\BuilderMixinExtension
+      tags: [phpstan.broker.methodsClassReflectionExtension]
+    - class: Recoded\PHPStanLaravel\Extensions\Eloquent\RelationMixinExtension
+      tags: [phpstan.broker.methodsClassReflectionExtension]

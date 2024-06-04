@@ -2,6 +2,7 @@
 
 namespace Illuminate\Database\Eloquent\Relations;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -108,7 +109,7 @@ class BelongsToMany extends Relation
 
     /**
      * @template TOther
-     * @param \Closure(): TOther|array $columns
+     * @param \Closure(): TOther|string[] $columns
      * @param \Closure(): TOther|null $callback
      * @return TRelated|TOther
      */
