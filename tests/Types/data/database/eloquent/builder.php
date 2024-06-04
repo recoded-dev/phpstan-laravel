@@ -70,6 +70,12 @@ assertType('Tests\Types\Fakes\User', $builder->sole());
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->blocked(false));
 
 // QueriesRelationships
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->has('posts', callback: function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->doesntHave('posts', callback: function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
+}));
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts', function ($param1) {
     assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
 }));
@@ -94,3 +100,16 @@ assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $buil
 }));
 
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas($unionRelation));
+
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->withWhereHas('posts', function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhereHas('posts', function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereDoesntHave('posts', function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhereDoesntHave('posts', function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
+}));

@@ -11,11 +11,68 @@ trait QueriesRelationships
 {
     /**
      * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param \Illuminate\Database\Eloquent\Relations\Relation|string $relation
+     * @param string $operator
+     * @param int $count
+     * @param string $boolean
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @return static
+     * @throws \RuntimeException
+     */
+    public function has($relation, $operator = '>=', $count = 1, $boolean = 'and', ?Closure $callback = null);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param string $relation
+     * @param string $boolean
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @return static
+     */
+    public function doesntHave($relation, $boolean = 'and', ?Closure $callback = null);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
      * @param string $relation
      * @param \Closure(TBuilder): (void|TBuilder)|null $callback
      * @param string $operator
      * @param int $count
-     * @return \Illuminate\Database\Eloquent\Builder<TModel>
+     * @return static
      */
     public function whereHas($relation, ?Closure $callback = null, $operator = '>=', $count = 1);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param string $relation
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @param string $operator
+     * @param int $count
+     * @return static
+     */
+    public function withWhereHas($relation, ?Closure $callback = null, $operator = '>=', $count = 1);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param string $relation
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @param string $operator
+     * @param int $count
+     * @return static
+     */
+    public function orWhereHas($relation, ?Closure $callback = null, $operator = '>=', $count = 1);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param string $relation
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @return static
+     */
+    public function whereDoesntHave($relation, ?Closure $callback = null);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param string $relation
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @return static
+     */
+    public function orWhereDoesntHave($relation, ?Closure $callback = null);
 }

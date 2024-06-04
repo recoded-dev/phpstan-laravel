@@ -28,17 +28,26 @@ final class WhereHasBuilderType implements MethodParameterClosureTypeExtension
 {
     public function isMethodSupported(MethodReflection $method, ParameterReflection $parameter): bool
     {
-        return $method->getName() === 'whereHas'
-            && $parameter->getName() === 'callback'
+        $methods = [
+            'doesntHave',
+            'has',
+            'whereHas',
+            'withWhereHas',
+            'orWhereHas',
+            'whereDoesntHave',
+            'orWhereDoesntHave',
+        ];
+
+        if (!in_array($method->getName(), $methods, true)) {
+            return false;
+        }
+
+        return $parameter->getName() === 'callback'
             && $method->getDeclaringClass()->getName() === 'Illuminate\Database\Eloquent\Builder';
     }
 
     public function getTypeFromMethodCall(MethodReflection $method, MethodCall $methodCall, ParameterReflection $parameter, Scope $scope): ?Type
     {
-        if (count($methodCall->getArgs()) < 2) {
-            return null;
-        }
-
         $firstType = $scope->getType($methodCall->getArgs()[0]->value);
 
         $strings = $firstType->getConstantStrings();
