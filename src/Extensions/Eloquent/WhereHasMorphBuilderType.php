@@ -37,7 +37,12 @@ final class WhereHasMorphBuilderType implements MethodParameterClosureTypeExtens
     public function isMethodSupported(MethodReflection $method, ParameterReflection $parameter): bool
     {
         $methods = [
+            'doesntHaveMorph',
             'hasMorph',
+            'orWhereDoesntHaveMorph',
+            'orWhereHasMorph',
+            'whereDoesntHaveMorph',
+            'whereHasMorph',
         ];
 
         if (!in_array($method->getName(), $methods, true)) {

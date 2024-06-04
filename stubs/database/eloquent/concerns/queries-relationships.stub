@@ -87,4 +87,54 @@ trait QueriesRelationships
      * @return static
      */
     public function hasMorph($relation, $types, $operator = '>=', $count = 1, $boolean = 'and', ?Closure $callback = null);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
+     * @param string|string[] $types
+     * @param string $boolean
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @return static
+     */
+    public function doesntHaveMorph($relation, $types, $boolean = 'and', ?Closure $callback = null);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
+     * @param string|string[] $types
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @param string $operator
+     * @param int $count
+     * @return static
+     */
+    public function whereHasMorph($relation, $types, ?Closure $callback = null, $operator = '>=', $count = 1);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
+     * @param string|string[] $types
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @param string $operator
+     * @param int $count
+     * @return static
+     */
+    public function orWhereHasMorph($relation, $types, ?Closure $callback = null, $operator = '>=', $count = 1);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
+     * @param string|string[] $types
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @return static
+     */
+    public function whereDoesntHaveMorph($relation, $types, ?Closure $callback = null);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
+     * @param string|string[] $types
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @return static
+     */
+    public function orWhereDoesntHaveMorph($relation, $types, ?Closure $callback = null);
 }

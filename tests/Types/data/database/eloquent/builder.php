@@ -117,3 +117,18 @@ assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $buil
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->hasMorph('related', [Post::class, 'media'], callback: function ($param1) {
     assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>|Tests\Types\Fakes\Builders\MediaBuilder', $param1);
 }));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->doesntHaveMorph('related', [Post::class, 'media'], callback: function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>|Tests\Types\Fakes\Builders\MediaBuilder', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHasMorph('related', [Post::class, 'media'], function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>|Tests\Types\Fakes\Builders\MediaBuilder', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhereHasMorph('related', [Post::class, 'media'], function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>|Tests\Types\Fakes\Builders\MediaBuilder', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereDoesntHaveMorph('related', [Post::class, 'media'], function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>|Tests\Types\Fakes\Builders\MediaBuilder', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhereDoesntHaveMorph('related', [Post::class, 'media'], function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>|Tests\Types\Fakes\Builders\MediaBuilder', $param1);
+}));

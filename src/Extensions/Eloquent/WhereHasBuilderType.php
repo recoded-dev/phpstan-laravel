@@ -31,11 +31,11 @@ final class WhereHasBuilderType implements MethodParameterClosureTypeExtension
         $methods = [
             'doesntHave',
             'has',
-            'whereHas',
-            'withWhereHas',
+            'orWhereDoesntHave',
             'orWhereHas',
             'whereDoesntHave',
-            'orWhereDoesntHave',
+            'whereHas',
+            'withWhereHas',
         ];
 
         if (!in_array($method->getName(), $methods, true)) {
