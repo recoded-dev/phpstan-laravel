@@ -1,5 +1,6 @@
 <?php
 
+use Tests\Types\Fakes\Post;
 use function PHPStan\Testing\assertType;
 
 /** @var \Illuminate\Database\Eloquent\Builder<\Tests\Types\Fakes\User> $builder */
@@ -112,4 +113,7 @@ assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $buil
 }));
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhereDoesntHave('posts', function ($param1) {
     assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->hasMorph('related', [Post::class, 'media'], callback: function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>|Tests\Types\Fakes\Builders\MediaBuilder', $param1);
 }));

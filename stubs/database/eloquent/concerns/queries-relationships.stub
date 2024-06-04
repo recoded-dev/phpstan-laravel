@@ -75,4 +75,16 @@ trait QueriesRelationships
      * @return static
      */
     public function orWhereDoesntHave($relation, ?Closure $callback = null);
+
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
+     * @param string|string[] $types
+     * @param string $operator
+     * @param int $count
+     * @param string $boolean
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @return static
+     */
+    public function hasMorph($relation, $types, $operator = '>=', $count = 1, $boolean = 'and', ?Closure $callback = null);
 }

@@ -1,0 +1,4 @@
+parameters:
+    laravel:
+        morphMap:
+            media: Tests\Types\Fakes\Media

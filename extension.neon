@@ -1,7 +1,20 @@
+parameters:
+    laravel:
+        morphMap: []
+
+parametersSchema:
+    laravel: structure([
+        morphMap: arrayOf(string())
+    ])
+
 services:
     - class: Recoded\PHPStanLaravel\Extensions\StubExtension
       tags: [phpstan.stubFilesExtension]
     - class: Recoded\PHPStanLaravel\Extensions\Eloquent\Scopes
       tags: [phpstan.broker.methodsClassReflectionExtension]
     - class: Recoded\PHPStanLaravel\Extensions\Eloquent\WhereHasBuilderType
+      tags: [phpstan.methodParameterClosureTypeExtension]
+    - class: Recoded\PHPStanLaravel\Extensions\Eloquent\WhereHasMorphBuilderType
+      arguments:
+        morphMap: %laravel.morphMap%
       tags: [phpstan.methodParameterClosureTypeExtension]
