@@ -3,3 +3,5 @@ services:
       tags: [phpstan.stubFilesExtension]
     - class: Recoded\PHPStanLaravel\Extensions\Eloquent\Scopes
       tags: [phpstan.broker.methodsClassReflectionExtension]
+    - class: Recoded\PHPStanLaravel\Extensions\Eloquent\WhereHasBuilderType
+      tags: [phpstan.methodParameterClosureTypeExtension]

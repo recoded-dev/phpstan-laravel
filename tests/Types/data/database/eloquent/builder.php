@@ -68,3 +68,29 @@ assertType('Tests\Types\Fakes\User', $builder->sole());
 
 // Scopes
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->blocked(false));
+
+// QueriesRelationships
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts', function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts'));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts.category', function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Category>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts.category'));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('nonExistent', function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Illuminate\Database\Eloquent\Model>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('nonExistent'));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts.media', function ($param1) {
+    assertType('Tests\Types\Fakes\Builders\MediaBuilder', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts.media'));
+
+/** @var 'posts'|'posts.category' $unionRelation */
+
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas($unionRelation, function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Category>|Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>', $param1);
+}));
+
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas($unionRelation));

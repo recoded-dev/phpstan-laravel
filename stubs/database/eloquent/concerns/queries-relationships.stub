@@ -1,0 +1,21 @@
+<?php
+
+namespace Illuminate\Database\Eloquent\Concerns;
+
+use Closure;
+
+/**
+ * @template TModel of \Illuminate\Database\Eloquent\Model
+ */
+trait QueriesRelationships
+{
+    /**
+     * @template TBuilder of \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model>
+     * @param string $relation
+     * @param \Closure(TBuilder): (void|TBuilder)|null $callback
+     * @param string $operator
+     * @param int $count
+     * @return \Illuminate\Database\Eloquent\Builder<TModel>
+     */
+    public function whereHas($relation, ?Closure $callback = null, $operator = '>=', $count = 1);
+}

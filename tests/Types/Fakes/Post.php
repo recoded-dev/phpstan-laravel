@@ -29,4 +29,14 @@ final class Post extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    /**
+     * Query the media.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<self, \Tests\Types\Fakes\Media>
+     */
+    public function media(): BelongsTo
+    {
+        return $this->belongsTo(Media::class);
+    }
 }

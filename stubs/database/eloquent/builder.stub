@@ -9,6 +9,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder as BuilderContract;
  * @template TModel of \Illuminate\Database\Eloquent\Model
  * @implements \Illuminate\Contracts\Database\Eloquent\Builder<TModel>
  * @phpstan-type TCollection \Illuminate\Database\Eloquent\Collection<int, TModel>
+ * @use \Illuminate\Database\Eloquent\Concerns\QueriesRelationships<TModel>
  */
 class Builder implements BuilderContract
 {
