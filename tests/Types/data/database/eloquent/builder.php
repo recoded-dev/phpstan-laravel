@@ -68,6 +68,26 @@ assertType('Tests\Types\Fakes\User|null', $builder->first());
 assertType('Tests\Types\Fakes\User', $builder->sole());
 
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->take(5));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->where(function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->where('username', 'john-doe'));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->where('blocked', '!=', true));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhere(function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhere('username', 'john-doe'));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhere('blocked', '!=', true));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereNot(function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereNot('username', 'john-doe'));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereNot('blocked', '!=', true));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhereNot(function ($param1) {
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $param1);
+}));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhereNot('username', 'john-doe'));
+assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhereNot('blocked', '!=', true));
 
 // Scopes
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->blocked(false));

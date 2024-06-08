@@ -20,7 +20,7 @@ class Builder implements BuilderContract
     public function make(array $attributes = []);
 
     /**
-     * @param \Closure|string|array|\Illuminate\Contracts\Database\Query\Expression $column
+     * @param \Closure(static): (static|void)|string|array<string, mixed>|\Illuminate\Contracts\Database\Query\Expression $column
      * @param mixed $operator
      * @param mixed $value
      * @param string $boolean
@@ -299,4 +299,38 @@ class Builder implements BuilderContract
      * @throws \Illuminate\Database\MultipleRecordsFoundException
      */
     public function sole($columns = ['*']);
+
+    /**
+     * @param \Closure(static): (static|void)|string|array<string, mixed>|\Illuminate\Contracts\Database\Query\Expression $column
+     * @param mixed $operator
+     * @param mixed $value
+     * @param string $boolean
+     * @return $this
+     */
+    public function where($column, $operator = null, $value = null, $boolean = 'and');
+
+    /**
+     * @param \Closure(static): (static|void)|string|array<string, mixed>|\Illuminate\Contracts\Database\Query\Expression $column
+     * @param mixed $operator
+     * @param mixed $value
+     * @return $this
+     */
+    public function orWhere($column, $operator = null, $value = null);
+
+    /**
+     * @param \Closure(static): (static|void)|string|array<string, mixed>|\Illuminate\Contracts\Database\Query\Expression $column
+     * @param mixed $operator
+     * @param mixed $value
+     * @param string $boolean
+     * @return $this
+     */
+    public function whereNot($column, $operator = null, $value = null, $boolean = 'and');
+
+    /**
+     * @param \Closure(static): (static|void)|string|array<string, mixed>|\Illuminate\Contracts\Database\Query\Expression $column
+     * @param mixed $operator
+     * @param mixed $value
+     * @return $this
+     */
+    public function orWhereNot($column, $operator = null, $value = null);
 }
