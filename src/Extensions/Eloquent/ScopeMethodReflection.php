@@ -11,11 +11,14 @@ use PHPStan\Reflection\FunctionVariantWithPhpDocs;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptor;
 use PHPStan\TrinaryLogic;
+use PHPStan\Type\StaticType;
 use PHPStan\Type\Type;
+use PHPStan\Type\VoidType;
 
 final class ScopeMethodReflection implements MethodReflection
 {
     public function __construct(
+        public readonly ClassReflection $calledOn,
         public readonly MethodReflection $scopeMethodReflection,
     ) {
         //
@@ -64,13 +67,19 @@ final class ScopeMethodReflection implements MethodReflection
     public function getVariants(): array
     {
         return array_map(function (ParametersAcceptor $acceptor) {
+            $returnType = $acceptor->getReturnType();
+
+            if ((new VoidType())->isSuperTypeOf($returnType)->yes()) {
+                $returnType = new StaticType($this->calledOn);
+            }
+
             return match (true) {
                 $acceptor instanceof FunctionVariantWithPhpDocs => new FunctionVariantWithPhpDocs(
                     $acceptor->getTemplateTypeMap(),
                     $acceptor->getResolvedTemplateTypeMap(),
                     array_slice($acceptor->getParameters(), 1),
                     $acceptor->isVariadic(),
-                    $acceptor->getReturnType(),
+                    $returnType,
                     $acceptor->getPhpDocReturnType(),
                     $acceptor->getNativeReturnType(),
                     $acceptor->getCallSiteVarianceMap(),
@@ -80,7 +89,7 @@ final class ScopeMethodReflection implements MethodReflection
                     $acceptor->getResolvedTemplateTypeMap(),
                     array_slice($acceptor->getParameters(), 1),
                     $acceptor->isVariadic(),
-                    $acceptor->getReturnType(),
+                    $returnType,
                     $acceptor->getCallSiteVarianceMap(),
                 ),
                 default => $acceptor,

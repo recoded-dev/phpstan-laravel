@@ -85,6 +85,9 @@ assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $buil
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts'));
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts.category', function ($param1) {
     assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Category>', $param1);
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Category>', $param1->main());
+    assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Category>', $param1->mainNever());
+    assertType('*ERROR*', $param1->doesNotExist());
 }));
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('posts.category'));
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->whereHas('nonExistent', function ($param1) {

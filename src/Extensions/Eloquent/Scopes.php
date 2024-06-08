@@ -50,15 +50,23 @@ final class Scopes implements MethodsClassReflectionExtension
 
         $modelClass = $builderReflection->getActiveTemplateTypeMap()->getType('TModel');
 
-        Assert::notNull($modelClass);
+        if ($modelClass === null || !(new ObjectType(Model::class))->isSuperTypeOf($modelClass)->yes()) {
+            throw new ShouldNotHappenException();
+        }
 
-        foreach ($modelClass->getObjectClassReflections() as $reflection) {
-            if ($reflection->hasMethod('scope' . ucfirst($methodName))) {
-                // TODO handle multiple class reflections?
-                return new ScopeMethodReflection(
-                    $reflection->getMethod('scope' . ucfirst($methodName), new OutOfClassScope()),
-                );
-            }
+        /** @var \PHPStan\Type\ObjectType $modelClass */
+
+        $reflection = $modelClass->getClassReflection();
+
+        if ($reflection === null) {
+            throw new ShouldNotHappenException();
+        }
+
+        if ($reflection->hasMethod('scope' . ucfirst($methodName))) {
+            return new ScopeMethodReflection(
+                $classReflection,
+                $reflection->getMethod('scope' . ucfirst($methodName), new OutOfClassScope()),
+            );
         }
 
         throw new ShouldNotHappenException();
