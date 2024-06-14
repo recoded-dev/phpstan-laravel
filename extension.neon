@@ -1,15 +1,24 @@
 parameters:
     laravel:
+        customBindings: []
         morphMap: []
 
 parametersSchema:
     laravel: structure([
+        customBindings: arrayOf(string())
         morphMap: arrayOf(string())
     ])
 
 services:
+    - class: Recoded\PHPStanLaravel\Extensions\Container\AppResolveFunctionDynamicReturnType
+      tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]
+    - class: Recoded\PHPStanLaravel\Extensions\Container\ContainerDynamicReturnType
+      tags: [phpstan.broker.dynamicMethodReturnTypeExtension]
     - class: Recoded\PHPStanLaravel\Extensions\StubExtension
       tags: [phpstan.stubFilesExtension]
+    - class: Recoded\PHPStanLaravel\DependencyRegistry
+      arguments:
+        customBindings: %laravel.customBindings%
     - class: Recoded\PHPStanLaravel\Extensions\Eloquent\Scopes
       tags: [phpstan.broker.methodsClassReflectionExtension]
     - class: Recoded\PHPStanLaravel\Extensions\Eloquent\WhereHasBuilderType

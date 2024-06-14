@@ -1,0 +1,4 @@
+parameters:
+    laravel:
+        customBindings:
+            pipeline: Illuminate\Contracts\Pipeline\Pipeline
