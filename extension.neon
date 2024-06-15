@@ -12,7 +12,7 @@ parametersSchema:
 services:
     - class: Recoded\PHPStanLaravel\Extensions\Container\AppResolveFunctionDynamicReturnType
       tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]
-    - class: Recoded\PHPStanLaravel\Extensions\Container\ContainerDynamicReturnType
+    - class: Recoded\PHPStanLaravel\Extensions\Contracts\Container\ContainerDynamicReturnType
       tags: [phpstan.broker.dynamicMethodReturnTypeExtension]
     - class: Recoded\PHPStanLaravel\Extensions\StubExtension
       tags: [phpstan.stubFilesExtension]

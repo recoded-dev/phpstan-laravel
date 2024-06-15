@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Recoded\PHPStanLaravel\Extensions\Container;
+namespace Recoded\PHPStanLaravel\Extensions\Contracts\Container;
 
-use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\Container;
+use Recoded\PHPStanLaravel\Extensions\Container\MakeGetDynamicReturnType;
 
 final class ContainerDynamicReturnType extends MakeGetDynamicReturnType
 {
