@@ -18,8 +18,6 @@ use PHPStan\Type\ClosureType;
 use PHPStan\Type\Generic\GenericObjectType;
 use PHPStan\Type\MethodParameterClosureTypeExtension;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\IntegerType;
-use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\VoidType;

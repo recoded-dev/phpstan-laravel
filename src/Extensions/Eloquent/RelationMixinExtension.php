@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Recoded\PHPStanLaravel\Extensions\Eloquent;
 
-use Illuminate\Database\Eloquent\Model;
 use PHPStan\Analyser\OutOfClassScope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;

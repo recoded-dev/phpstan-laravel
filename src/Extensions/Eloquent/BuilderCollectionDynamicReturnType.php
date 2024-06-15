@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Recoded\PHPStanLaravel\Extensions\Eloquent;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
@@ -13,13 +12,9 @@ use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\Generic\GenericObjectType;
-use PHPStan\Type\Generic\TemplateUnionType;
 use PHPStan\Type\IntegerType;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
-use PHPStan\Type\UnionType;
-use PHPStan\Type\VerbosityLevel;
 
 final class BuilderCollectionDynamicReturnType implements DynamicMethodReturnTypeExtension
 {
