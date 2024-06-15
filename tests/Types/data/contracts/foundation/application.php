@@ -23,7 +23,7 @@ assertType('Illuminate\Contracts\Auth\Guard', $application->make('auth.driver'))
 assertType('Illuminate\View\Compilers\BladeCompiler', $application->make('blade.compiler'));
 assertType('Illuminate\Contracts\Cache\Factory', $application->make('cache'));
 assertType('Psr\SimpleCache\CacheInterface', $application->make('cache.store'));
-assertType('Psr\Cache\CacheItemPoolInterface|Symfony\Component\Cache\Adapter\AdapterInterface|Symfony\Component\Cache\Adapter\Psr16Adapter', $application->make('cache.psr6'));
+assertType('Psr\Cache\CacheItemPoolInterface', $application->make('cache.psr6'));
 assertType('Illuminate\Contracts\Config\Repository', $application->make('config'));
 assertType('Illuminate\Contracts\Cookie\Factory', $application->make('cookie'));
 assertType('Illuminate\Database\ConnectionResolverInterface', $application->make('db'));
@@ -63,7 +63,7 @@ assertType('Illuminate\Contracts\Auth\Guard', $application->get('auth.driver'));
 assertType('Illuminate\View\Compilers\BladeCompiler', $application->get('blade.compiler'));
 assertType('Illuminate\Contracts\Cache\Factory', $application->get('cache'));
 assertType('Psr\SimpleCache\CacheInterface', $application->get('cache.store'));
-assertType('Psr\Cache\CacheItemPoolInterface|Symfony\Component\Cache\Adapter\AdapterInterface|Symfony\Component\Cache\Adapter\Psr16Adapter', $application->get('cache.psr6'));
+assertType('Psr\Cache\CacheItemPoolInterface', $application->get('cache.psr6'));
 assertType('Illuminate\Contracts\Config\Repository', $application->get('config'));
 assertType('Illuminate\Contracts\Cookie\Factory', $application->get('cookie'));
 assertType('Illuminate\Database\ConnectionResolverInterface', $application->get('db'));
