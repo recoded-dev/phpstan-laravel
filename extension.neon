@@ -14,6 +14,8 @@ services:
       tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]
     - class: Recoded\PHPStanLaravel\Extensions\Contracts\Container\ContainerDynamicReturnType
       tags: [phpstan.broker.dynamicMethodReturnTypeExtension]
+    - class: Recoded\PHPStanLaravel\Extensions\Eloquent\BuilderCollectionDynamicReturnType
+      tags: [phpstan.broker.dynamicMethodReturnTypeExtension]
     - class: Recoded\PHPStanLaravel\Extensions\StubExtension
       tags: [phpstan.stubFilesExtension]
     - class: Recoded\PHPStanLaravel\DependencyRegistry

@@ -68,3 +68,22 @@ assertType('Illuminate\Database\Eloquent\Relations\Relation<Tests\Types\Fakes\Po
 assertType('Illuminate\Database\Eloquent\Relations\Relation<Tests\Types\Fakes\Post, Tests\Types\Fakes\User>', $relation->orWhereDoesntHaveMorph('related', [Post::class, 'media'], function ($param1) {
     assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\Post>|Tests\Types\Fakes\Builders\MediaBuilder', $param1);
 }));
+
+// Custom collections
+
+/** @var \Illuminate\Database\Eloquent\Relations\Relation<\Tests\Types\Fakes\User, \Tests\Types\Fakes\Activity> $relation */
+/** @var \Illuminate\Contracts\Support\Arrayable<array-key, mixed> $arrayable */
+
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->hydrate([]));
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->fromQuery(''));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->find([]));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->find($arrayable));
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->findMany([]));
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->findMany($arrayable));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->findOrFail([]));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->findOrFail($arrayable));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->findOrNew([]));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->findOrNew($arrayable));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->findOr([]));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->findOr($arrayable));
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $relation->get());

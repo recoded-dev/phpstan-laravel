@@ -193,3 +193,22 @@ assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $buil
 assertType('Illuminate\Database\Eloquent\Builder<Tests\Types\Fakes\User>', $builder->orWhereDoesntHaveMorph('related', '*', function ($param1) {
     assertType('Illuminate\Database\Eloquent\Builder<Illuminate\Database\Eloquent\Model>', $param1);
 }));
+
+// Custom collections
+
+/** @var \Illuminate\Database\Eloquent\Builder<\Tests\Types\Fakes\Activity> $builder */
+/** @var \Illuminate\Contracts\Support\Arrayable<array-key, mixed> $arrayable */
+
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->hydrate([]));
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->fromQuery(''));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->find([]));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->find($arrayable));
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->findMany([]));
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->findMany($arrayable));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->findOrFail([]));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->findOrFail($arrayable));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->findOrNew([]));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->findOrNew($arrayable));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->findOr([]));
+// assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->findOr($arrayable));
+assertType('Tests\Types\Fakes\Collections\ActivityCollection<int>', $builder->get());

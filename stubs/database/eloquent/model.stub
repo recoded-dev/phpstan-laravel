@@ -5,6 +5,13 @@ namespace Illuminate\Database\Eloquent;
 class Model
 {
     /**
+     * @template TKey of array-key
+     * @param array<TKey, static> $models
+     * @return \Illuminate\Database\Eloquent\Collection<TKey, static>
+     */
+    public function newCollection(array $models = []);
+
+    /**
      * @param \Illuminate\Database\Query\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
