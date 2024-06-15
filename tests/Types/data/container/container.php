@@ -11,6 +11,11 @@ assertType('Illuminate\Contracts\Pipeline\Pipeline', $container->make('pipeline'
 assertType('mixed', $container->make($dynamicDependency));
 assertType('mixed', $container->make($partiallyDynamicDependency));
 
+assertType('Illuminate\Contracts\Pipeline\Pipeline', $container->makeWith('Illuminate\Contracts\Pipeline\Pipeline', []));
+assertType('Illuminate\Contracts\Pipeline\Pipeline', $container->makeWith('pipeline', []));
+assertType('mixed', $container->makeWith($dynamicDependency, []));
+assertType('mixed', $container->makeWith($partiallyDynamicDependency, []));
+
 assertType('Illuminate\Contracts\Pipeline\Pipeline', $container->get('Illuminate\Contracts\Pipeline\Pipeline'));
 assertType('Illuminate\Contracts\Pipeline\Pipeline', $container->get('pipeline'));
 assertType('mixed', $container->get($dynamicDependency));

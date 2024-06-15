@@ -5,6 +5,9 @@ use function PHPStan\Testing\assertType;
 /** @var string $dynamicDependency */
 /** @var string|'test' $partiallyDynamicDependency */
 
+assertType('Illuminate\Contracts\Foundation\Application', app());
+assertType('Illuminate\Contracts\Foundation\Application', app(null));
+
 assertType('Illuminate\Contracts\Pipeline\Pipeline', app('Illuminate\Contracts\Pipeline\Pipeline'));
 assertType('Illuminate\Contracts\Pipeline\Pipeline', app('pipeline'));
 assertType('mixed', app($dynamicDependency));

@@ -36,6 +36,10 @@ final class AppResolveFunctionDynamicReturnType implements DynamicFunctionReturn
         $firstArg = array_values($functionCall->getArgs())[0];
         $firstArgType = $scope->getType($firstArg->value);
 
+        if ($firstArgType->isNull()->yes()) {
+            return new ObjectType('Illuminate\Contracts\Foundation\Application');
+        }
+
         if ($firstArgType->getConstantStrings() === []) {
             return null;
         }
