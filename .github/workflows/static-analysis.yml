@@ -1,0 +1,14 @@
+name: Static analysis
+
+on:
+  pull_request: ~
+  push:
+    branches: [main]
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: php-actions/composer@v6
+      - uses: php-actions/phpstan@v3

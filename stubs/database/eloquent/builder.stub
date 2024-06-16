@@ -49,7 +49,7 @@ class Builder implements BuilderContract
     public function find($id, $columns = ['*']);
 
     /**
-     * @param \Illuminate\Contracts\Support\Arrayable|mixed[] $ids
+     * @param \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|mixed[] $ids
      * @param string[]|string $columns
      * @return TCollection
      */
@@ -291,14 +291,6 @@ class Builder implements BuilderContract
      * @return TModel|null
      */
     public function first($columns = ['*']);
-
-    /**
-     * @param string[]|string $columns
-     * @return TModel
-     * @throws \Illuminate\Database\RecordsNotFoundException
-     * @throws \Illuminate\Database\MultipleRecordsFoundException
-     */
-    public function sole($columns = ['*']);
 
     /**
      * @param \Closure(static): (static|void)|string|array<string, mixed>|\Illuminate\Contracts\Database\Query\Expression $column

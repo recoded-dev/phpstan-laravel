@@ -1,0 +1,15 @@
+<?php
+
+namespace Illuminate\Support;
+
+use Illuminate\Contracts\Support\CanBeEscapedWhenCastToString;
+
+/**
+ * @template TKey of array-key
+ * @template TValue
+ * @implements \Illuminate\Support\Enumerable<TKey, TValue>
+ */
+class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
+{
+    //
+}

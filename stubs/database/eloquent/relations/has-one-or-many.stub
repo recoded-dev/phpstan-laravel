@@ -72,14 +72,14 @@ abstract class HasOneOrMany extends Relation
     public function saveQuietly(Model $model);
 
     /**
-     * @template TModels of iterable<array-key, TRelated>
+     * @template TModels of \Illuminate\Database\Eloquent\Collection<array-key, TRelated>|array<array-key, TRelated>
      * @param TModels $models
      * @return TModels
      */
     public function saveMany($models);
 
     /**
-     * @template TModels of iterable<array-key, TRelated>
+     * @template TModels of \Illuminate\Database\Eloquent\Collection<array-key, TRelated>|array<array-key, TRelated>
      * @param TModels $models
      * @return TModels
      */

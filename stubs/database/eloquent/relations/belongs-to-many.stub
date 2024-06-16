@@ -62,7 +62,7 @@ class BelongsToMany extends Relation
     public function find($id, $columns = ['*']);
 
     /**
-     * @param \Illuminate\Contracts\Support\Arrayable|mixed[] $ids
+     * @param \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|mixed[] $ids
      * @param string[] $columns
      * @return TRelatedCollection
      */
@@ -79,7 +79,7 @@ class BelongsToMany extends Relation
     /**
      * @template TReturn
      * @param mixed $id
-     * @param (\Closure(): TReturn)|array $columns
+     * @param (\Closure(): TReturn)|string[] $columns
      * @param (\Closure(): TReturn)|null $callback
      * @return ($id is \Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed> ? TRelatedCollection : TRelated|TReturn)
      */
