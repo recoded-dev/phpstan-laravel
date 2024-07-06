@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Recoded\PHPStanLaravel\Extensions\Contracts\Container;
 
-use Illuminate\Contracts\Container\Container;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
@@ -24,7 +23,7 @@ final class ContainerDynamicReturnType implements DynamicMethodReturnTypeExtensi
 
     public function getClass(): string
     {
-        return Container::class;
+        return 'Illuminate\Contracts\Container\Container';
     }
 
     public function isMethodSupported(MethodReflection $methodReflection): bool

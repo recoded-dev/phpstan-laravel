@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Recoded\PHPStanLaravel\Extensions\Eloquent;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
@@ -20,14 +19,14 @@ final class BuilderCollectionDynamicReturnType implements DynamicMethodReturnTyp
 {
     public function getClass(): string
     {
-        return Builder::class;
+        return 'Illuminate\Contracts\Database\Eloquent\Builder';
     }
 
     public function isMethodSupported(MethodReflection $methodReflection): bool
     {
         $modelType = $methodReflection
             ->getDeclaringClass()
-            ->getAncestorWithClassName(Builder::class)
+            ->getAncestorWithClassName('Illuminate\Contracts\Database\Eloquent\Builder')
             ?->getActiveTemplateTypeMap()
             ->getType('TModel');
 
@@ -60,7 +59,7 @@ final class BuilderCollectionDynamicReturnType implements DynamicMethodReturnTyp
         /** @var \PHPStan\Type\ObjectType $modelType */
         $modelType = $methodReflection
             ->getDeclaringClass()
-            ->getAncestorWithClassName(Builder::class)
+            ->getAncestorWithClassName('Illuminate\Contracts\Database\Eloquent\Builder')
             ?->getActiveTemplateTypeMap()
             ->getType('TModel');
 
