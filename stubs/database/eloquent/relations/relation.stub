@@ -5,34 +5,12 @@ namespace Illuminate\Database\Eloquent\Relations;
 use Illuminate\Contracts\Database\Eloquent\Builder as BuilderContract;
 
 /**
- * @template TParent of \Illuminate\Database\Eloquent\Model
- * @template TRelated of \Illuminate\Database\Eloquent\Model
- * @implements \Illuminate\Contracts\Database\Eloquent\Builder<TRelated>
+ * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+ * @template TDeclaringModel of \Illuminate\Database\Eloquent\Model
+ * @template TResult
+ * @implements \Illuminate\Contracts\Database\Eloquent\Builder<TRelatedModel>
  */
 abstract class Relation implements BuilderContract
 {
-    /**
-     * @param string[] $columns
-     * @return \Illuminate\Database\Eloquent\Collection<int, TRelated>
-     */
-    public function get($columns = ['*']);
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Builder<TRelated>
-     */
-    public function getQuery();
-
-    /**
-     * Get the parent model of the relation.
-     *
-     * @return TParent
-     */
-    public function getParent();
-
-    /**
-     * Get the related model of the relation.
-     *
-     * @return TRelated
-     */
-    public function getRelated();
+    //
 }

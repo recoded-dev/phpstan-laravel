@@ -14,7 +14,7 @@ final class Category extends Model
     /**
      * Query the posts.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<self, \Tests\Types\Fakes\Post>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\Tests\Types\Fakes\Post, $this>
      */
     public function posts(): BelongsToMany
     {

@@ -22,7 +22,7 @@ final class RelationMixinExtension implements MethodsClassReflectionExtension
             return false;
         }
 
-        $related = $classReflection->getActiveTemplateTypeMap()->getType('TRelated');
+        $related = $classReflection->getActiveTemplateTypeMap()->getType('TRelatedModel');
 
         if ($related === null) {
             return false;
@@ -46,7 +46,7 @@ final class RelationMixinExtension implements MethodsClassReflectionExtension
     public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
     {
         /** @var \PHPStan\Type\ObjectType $related */
-        $related = $classReflection->getActiveTemplateTypeMap()->getType('TRelated');
+        $related = $classReflection->getActiveTemplateTypeMap()->getType('TRelatedModel');
 
         $builderMethod = $related->getMethod('newEloquentBuilder', new OutOfClassScope());
 

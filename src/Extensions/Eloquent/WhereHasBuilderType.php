@@ -24,7 +24,7 @@ use PHPStan\Type\VoidType;
 
 final class WhereHasBuilderType implements MethodParameterClosureTypeExtension
 {
-    public function isMethodSupported(MethodReflection $method, ParameterReflection $parameter): bool
+    public function isMethodSupported(MethodReflection $methodReflection, ParameterReflection $parameter): bool
     {
         $methods = [
             'doesntHave',
@@ -36,15 +36,15 @@ final class WhereHasBuilderType implements MethodParameterClosureTypeExtension
             'withWhereHas',
         ];
 
-        if (!in_array($method->getName(), $methods, true)) {
+        if (!in_array($methodReflection->getName(), $methods, true)) {
             return false;
         }
 
         return $parameter->getName() === 'callback'
-            && $method->getDeclaringClass()->is('Illuminate\Database\Eloquent\Builder');
+            && $methodReflection->getDeclaringClass()->is('Illuminate\Database\Eloquent\Builder');
     }
 
-    public function getTypeFromMethodCall(MethodReflection $method, MethodCall $methodCall, ParameterReflection $parameter, Scope $scope): ?Type
+    public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, ParameterReflection $parameter, Scope $scope): ?Type
     {
         $firstType = $scope->getType($methodCall->getArgs()[0]->value);
 
@@ -54,7 +54,7 @@ final class WhereHasBuilderType implements MethodParameterClosureTypeExtension
             return null;
         }
 
-        $model = $method->getDeclaringClass()
+        $model = $methodReflection->getDeclaringClass()
             ->getActiveTemplateTypeMap()
             ->getType('TModel');
 
@@ -100,7 +100,7 @@ final class WhereHasBuilderType implements MethodParameterClosureTypeExtension
                 /** @var \PHPStan\Type\ObjectType $related */
                 $related = $class
                     ->getActiveTemplateTypeMap()
-                    ->getType('TRelated');
+                    ->getType('TRelatedModel');
 
                 $class = $related->getClassReflection();
 
@@ -129,7 +129,7 @@ final class WhereHasBuilderType implements MethodParameterClosureTypeExtension
             /** @var \PHPStan\Type\ObjectType $related */
             $related = $class
                 ->getActiveTemplateTypeMap()
-                ->getType('TRelated');
+                ->getType('TRelatedModel');
 
             /** @var \PHPStan\Reflection\ExtendedMethodReflection $newEloquentBuilder */
             $newEloquentBuilder = $scope->getMethodReflection($related, 'newEloquentBuilder');

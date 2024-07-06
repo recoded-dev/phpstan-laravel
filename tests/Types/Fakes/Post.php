@@ -13,7 +13,7 @@ final class Post extends Model
     /**
      * Query the author.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<self, \Tests\Types\Fakes\User>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Tests\Types\Fakes\User, $this>
      */
     public function author(): BelongsTo
     {
@@ -23,7 +23,7 @@ final class Post extends Model
     /**
      * Query the categories.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<self, \Tests\Types\Fakes\Category>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\Tests\Types\Fakes\Category, $this>
      */
     public function category(): BelongsToMany
     {
@@ -33,7 +33,7 @@ final class Post extends Model
     /**
      * Query the media.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<self, \Tests\Types\Fakes\Media>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Tests\Types\Fakes\Media, $this>
      */
     public function media(): BelongsTo
     {
