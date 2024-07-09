@@ -2,7 +2,7 @@
 
 use function PHPStan\Testing\assertType;
 
-/** @var \Illuminate\Database\Eloquent\Relations\BelongsToMany<\Tests\Types\Fakes\Post, \Tests\Types\Fakes\Category> $relation */
+/** @var \Illuminate\Database\Eloquent\Relations\BelongsToMany<\Tests\Types\Fakes\Category, \Tests\Types\Fakes\Post> $relation */
 /** @var \Tests\Types\Fakes\Category $category */
 
 assertType('Tests\Types\Fakes\Category', $relation->findOrNew(1));
@@ -18,8 +18,8 @@ assertType('Tests\Types\Fakes\Category', $relation->findOrFail(1));
 assertType('Illuminate\Database\Eloquent\Collection<int, Tests\Types\Fakes\Category>', $relation->findOrFail([1]));
 assertType('string|Tests\Types\Fakes\Category', $relation->findOr(1, fn () => 'foo-bar'));
 assertType('string|Tests\Types\Fakes\Category', $relation->findOr(1, fn () => 'foo-bar'));
-assertType('Illuminate\Database\Eloquent\Collection<int, Tests\Types\Fakes\Category>', $relation->findOr([1], ['*'], fn () => 'foo-bar'));
-assertType('Illuminate\Database\Eloquent\Collection<int, Tests\Types\Fakes\Category>', $relation->findOr([1], fn () => 'foo-bar'));
+assertType('Illuminate\Database\Eloquent\Collection<int, Tests\Types\Fakes\Category>|string', $relation->findOr([1], ['*'], fn () => 'foo-bar'));
+assertType('Illuminate\Database\Eloquent\Collection<int, Tests\Types\Fakes\Category>|string', $relation->findOr([1], fn () => 'foo-bar'));
 assertType('Tests\Types\Fakes\Category|null', $relation->firstWhere('foo', 'bar'));
 assertType('Tests\Types\Fakes\Category|null', $relation->first());
 assertType('Tests\Types\Fakes\Category', $relation->firstOrFail());

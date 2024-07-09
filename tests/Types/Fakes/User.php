@@ -13,7 +13,7 @@ final class User extends Model
     /**
      * Query the posts.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<self, \Tests\Types\Fakes\Post>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\Tests\Types\Fakes\Post, $this>
      */
     public function posts(): HasMany
     {

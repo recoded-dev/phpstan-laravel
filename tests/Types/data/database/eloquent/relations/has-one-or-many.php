@@ -2,7 +2,7 @@
 
 use function PHPStan\Testing\assertType;
 
-/** @var \Illuminate\Database\Eloquent\Relations\HasOneOrMany<\Tests\Types\Fakes\User, \Tests\Types\Fakes\Post> $relation */
+/** @var \Illuminate\Database\Eloquent\Relations\HasOneOrMany<\Tests\Types\Fakes\Post, \Tests\Types\Fakes\User> $relation */
 /** @var \Tests\Types\Fakes\Post $post */
 
 assertType('Tests\Types\Fakes\Post', $relation->make(['foo' => 'bar']));
@@ -15,8 +15,8 @@ assertType('Tests\Types\Fakes\Post', $relation->createOrFirst(['foo' => 'bar']))
 assertType('Tests\Types\Fakes\Post', $relation->updateOrCreate(['foo' => 'bar']));
 assertType('Tests\Types\Fakes\Post|false', $relation->save($post));
 assertType('Tests\Types\Fakes\Post|false', $relation->saveQuietly($post));
-assertType('array{Tests\Types\Fakes\Post}', $relation->saveMany([$post]));
-assertType('array{Tests\Types\Fakes\Post}', $relation->saveManyQuietly([$post]));
+assertType('iterable<Tests\Types\Fakes\Post>', $relation->saveMany([$post]));
+assertType('iterable<Tests\Types\Fakes\Post>', $relation->saveManyQuietly([$post]));
 assertType('Tests\Types\Fakes\Post', $relation->create(['foo' => 'bar']));
 assertType('Tests\Types\Fakes\Post', $relation->createQuietly(['foo' => 'bar']));
 assertType('Tests\Types\Fakes\Post', $relation->forceCreate(['foo' => 'bar']));
