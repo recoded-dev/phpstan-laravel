@@ -1,0 +1,4 @@
+parameters:
+    laravel:
+        configPaths:
+            - %rootDir%/../../../tests/Types/Contracts/Config/config
